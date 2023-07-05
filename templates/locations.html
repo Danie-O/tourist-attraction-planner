@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>{{ template_categories[template_category] }}</h1> 
+
+  <div class="navbar">
+    {% for category, label in template_categories.items() %}
+      <a href="{{ url_for('locations', category=category) }}">{{ label }}</a> 
+    {% endfor %}
+  </div>
+
+  <table>
+    <colgroup>
+      <col style="width: 20%">
+      <col style="width: 70%">
+      <col style="width: 10%">
+    </colgroup>
+    <tbody class="loctable">
+        {% for location in template_locations %}
+        <tr>
+          <td class="loc">{{ location.name }}</td>
+          <td class="desc">{{ location.description }}</td>
+          <td class="btns">
+            {% if location.category in ["recommended", "tovisit"]%}
+            <form method="POST">
+              <input type="submit" class="up" name="{{ location.name }}" value=&#8599;>
+              <input type="submit" class="del" name="{{ location.name }}" value="X">
+            </form>
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+
+  <form class="addform" action="" method="POST"> <!-- set action attribute here -->
+    <!-- call hidden_tag() here -->
+
+    <table>
+      <colgroup>
+        <col style="width: 40%">
+        <col style="width: 40%">
+        <col style="width: 20%">
+      </colgroup>
+      <tbody>
+        <tr>
+          <td></td> <!-- insert location name label here -->
+          <td></td> <!-- insert location description label here -->
+          <td></td> <!-- insert location category label here -->
+        </tr>
+        <tr>
+          <td></td> <!-- insert add_location name here -->
+          <td></td> <!-- insert add_location description here -->
+          <td>
+            <!-- begin for loop here -->
+
+              <div></div> <!-- insert button here -->
+            <!-- end for loop here -->
+
+          </td>
+        </tr>
+        <tr>
+          <td></td> <!-- insert submit here -->
+        </tr>
+      </tbody>
+    </table>
+  </form>
+{% endblock %}
