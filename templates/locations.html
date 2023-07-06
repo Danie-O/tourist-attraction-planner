@@ -31,7 +31,7 @@
         {% endfor %}
     </tbody>
   </table>
-
+  <h3>Add new location</h3>
   <form class="addform" action="{{ url_for('add_location') }}" method="POST">
     {{ add_location.hidden_tag() }}
     <table>
